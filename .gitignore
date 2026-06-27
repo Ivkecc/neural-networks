@@ -1,5 +1,8 @@
-# Virtual environment
+# Virtual environment (.venv is a symlink to venv on macOS — see scripts/setup_venv.sh)
 .venv/
+venv/
+
+scripts/
 
 # Python
 __pycache__/

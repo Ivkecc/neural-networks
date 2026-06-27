@@ -1,5 +1,5 @@
-from config.config import DATASET_ROOT
-from datasets.har_dataset import HARDataset
+from neural_networks.config.config import DATASET_ROOT
+from neural_networks.datasets.har_dataset import HARDataset
 
 dataset = HARDataset(
     root=DATASET_ROOT,

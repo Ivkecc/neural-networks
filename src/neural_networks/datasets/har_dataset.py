@@ -46,17 +46,3 @@ class HARDataset(Dataset):
 
     def __getitem__(self, index):
         return self.data[index], self.labels[index]
-
-
-if __name__ == "__main__":
-    dataset = HARDataset(
-        root="data/raw/UCI-HAR Dataset",
-        split="train",
-    )
-
-    print(f"Number of samples: {len(dataset)}")
-
-    X, y = dataset[0]
-
-    print(f"X shape: {X.shape}")
-    print(f"Label: {y}")

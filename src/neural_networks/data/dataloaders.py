@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
 
-from config.config import BATCH_SIZE, DATASET_ROOT
-from datasets.har_dataset import HARDataset
+from neural_networks.config.config import BATCH_SIZE, DATASET_ROOT
+from neural_networks.datasets.har_dataset import HARDataset
 
 
 def create_dataloaders(batch_size: int = BATCH_SIZE):

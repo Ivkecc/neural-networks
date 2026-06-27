@@ -1,8 +1,1 @@
-config
-data
-datasets
-evaluation
-models
-training
-utils
-visualization
+neural_networks

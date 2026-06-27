@@ -1,4 +1,4 @@
-from data.dataloaders import create_dataloaders
+from neural_networks.data.dataloaders import create_dataloaders
 
 train_loader, test_loader = create_dataloaders()
 
