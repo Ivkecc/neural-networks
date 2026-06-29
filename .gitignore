@@ -26,3 +26,6 @@ checkpoints/
 # Dataset
 data/raw/
 data/processed/
+
+
+*.egg-info

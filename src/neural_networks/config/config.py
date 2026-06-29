@@ -12,3 +12,12 @@ EPOCHS = 50
 
 # Reproducibility
 RANDOM_SEED = 42
+
+CLASS_NAMES = [
+    "Walking",
+    "Walking Upstairs",
+    "Walking Downstairs",
+    "Sitting",
+    "Standing",
+    "Laying",
+]
