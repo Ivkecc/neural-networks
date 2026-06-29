@@ -15,7 +15,7 @@ def plot_training_history(
 
     epochs = range(1, len(train_losses) + 1)
 
-    #---------Loss plot--------
+    """---------Loss plot--------"""
 
     plt.figure(figsize=(8, 5))
 
@@ -43,9 +43,9 @@ def plot_training_history(
 
     plt.close()
 
-    #---------Accuracy plot--------
+    """---------Accuracy plot--------"""
 
-    plt.figure(figsize=(8,5))
+    plt.figure(figsize=(8, 5))
 
     plt.plot(epochs, train_accuracies, label="Train Accuracy")
     plt.plot(epochs, test_accuracies, label="Test Accuracy")
