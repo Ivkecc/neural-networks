@@ -8,6 +8,7 @@ def plot_confusion_matrix(
     labels,
     predictions,
     class_names,
+    model_type,
 ):
     output_dir = Path("outputs/plots")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -30,8 +31,8 @@ def plot_confusion_matrix(
     plt.tight_layout()
 
     plt.savefig(
-        output_dir / "dense_confusion_matrix.png",
-        bbox_inches="tight"
+      output_dir / f"{model_type}_confusion_matrix.png",
+      bbox_inches="tight"
     )
 
     plt.close()

@@ -7,7 +7,7 @@ NUM_CLASSES = 6
 
 # Training
 BATCH_SIZE = 64
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.0005
 EPOCHS = 50
 
 # Reproducibility
@@ -21,3 +21,5 @@ CLASS_NAMES = [
     "Standing",
     "Laying",
 ]
+
+MODEL_TYPE = "cnn_lstm"

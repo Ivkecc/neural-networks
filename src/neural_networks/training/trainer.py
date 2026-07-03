@@ -3,9 +3,13 @@ from torch import nn
 from torch.utils.data import DataLoader
 from pathlib import Path
 
-from neural_networks.config.config import EPOCHS, LEARNING_RATE, CLASS_NAMES
+from neural_networks.config.config import EPOCHS, LEARNING_RATE, CLASS_NAMES, MODEL_TYPE
 from neural_networks.data.dataloaders import create_dataloaders
 from neural_networks.models.dense import DenseNN
+from neural_networks.models.cnn import CNN
+from neural_networks.models.lstm import LSTMModel
+from neural_networks.models.gru import GRUModel
+from neural_networks.models.cnn_lstm import CNNLSTMModel
 from neural_networks.visualization.plots import plot_training_history
 from neural_networks.training.checkpoint import save_checkpoint
 from neural_networks.training.early_stopping import EarlyStopping
@@ -13,6 +17,24 @@ from neural_networks.evaluation.predictions import collect_predictions
 from neural_networks.evaluation.confusion_matrix import plot_confusion_matrix
 
 
+def create_model(model_type: str) -> nn.Module:
+    if model_type == "dense":
+        return DenseNN()
+
+    if model_type == "cnn":
+        return CNN()
+    
+    if model_type == "lstm":
+        return LSTMModel()
+    
+    if model_type == "gru":
+        return GRUModel()
+    
+    if model_type == "cnn_lstm":
+        return CNNLSTMModel()
+
+    raise ValueError(f"Unknown model type: {model_type}")
+    
 def train_one_epoch(
         model: nn.Module, 
         train_loader: DataLoader, 
@@ -82,7 +104,7 @@ def evaluate(model: nn.Module, test_loader: DataLoader, criterion: nn.Module):
 def train():
     train_loader, test_loader = create_dataloaders()
 
-    model = DenseNN()
+    model = create_model(MODEL_TYPE)
 
     criterion = nn.CrossEntropyLoss()
 
@@ -93,9 +115,9 @@ def train():
 
     checkpoint_dir = Path("checkpoints")
 
-    best_model_path = checkpoint_dir / "dense_best.pt"
+    best_model_path = checkpoint_dir / f"{MODEL_TYPE}_best.pt"
 
-    early_stopper = EarlyStopping(patience=5)  
+    early_stopper = EarlyStopping(patience=10)  
 
     train_losses = []
     train_accuracies = []
@@ -149,10 +171,21 @@ def train():
         data_loader=test_loader,
     )
 
+    from sklearn.metrics import classification_report
+
+    print("\nClassification report:")
+    print(classification_report(
+        labels,
+        predictions,
+        target_names=CLASS_NAMES,
+        digits=4
+    ))
+
     plot_confusion_matrix(
         labels=labels,
         predictions=predictions,
-        class_names=CLASS_NAMES
+        class_names=CLASS_NAMES,
+        model_type=MODEL_TYPE,
     )
 
 

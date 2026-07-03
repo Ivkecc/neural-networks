@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-
+from neural_networks.config.config import MODEL_TYPE
 
 def plot_training_history(
     train_losses,
@@ -35,11 +35,11 @@ def plot_training_history(
 
     plt.ylabel("Loss")
 
-    plt.title("Training and Test Loss")
+    plt.title(f"{MODEL_TYPE.upper()} - Training and Test Loss")
 
     plt.legend()
 
-    plt.savefig(output_dir / "dense_loss.png")
+    plt.savefig(output_dir / f"{MODEL_TYPE}_loss.png")
 
     plt.close()
 
@@ -52,9 +52,9 @@ def plot_training_history(
 
     plt.xlabel("Epoch")
     plt.ylabel("Accuracy")
-    plt.title("Training and Test Accuracy")
+    plt.title(f"{MODEL_TYPE.upper()} - Training and Test Accuracy")
 
     plt.legend()
 
-    plt.savefig(output_dir / "dense_accuracy.png")
+    plt.savefig(output_dir / f"{MODEL_TYPE}_accuracy.png")
     plt.close()
