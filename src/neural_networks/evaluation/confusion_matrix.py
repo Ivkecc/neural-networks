@@ -15,7 +15,7 @@ def plot_confusion_matrix(
 
     cm = confusion_matrix(labels, predictions,)
 
-    plt.figure(figsize=(16, 12))
+    plt.figure(figsize=(8, 5))
 
     display = ConfusionMatrixDisplay(
         confusion_matrix=cm,

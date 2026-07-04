@@ -15,6 +15,7 @@ from neural_networks.training.checkpoint import save_checkpoint
 from neural_networks.training.early_stopping import EarlyStopping
 from neural_networks.evaluation.predictions import collect_predictions
 from neural_networks.evaluation.confusion_matrix import plot_confusion_matrix
+from neural_networks.evaluation.classification import print_classification_report
 
 
 def create_model(model_type: str) -> nn.Module:
@@ -35,6 +36,7 @@ def create_model(model_type: str) -> nn.Module:
 
     raise ValueError(f"Unknown model type: {model_type}")
     
+
 def train_one_epoch(
         model: nn.Module, 
         train_loader: DataLoader, 
@@ -171,16 +173,6 @@ def train():
         data_loader=test_loader,
     )
 
-    from sklearn.metrics import classification_report
-
-    print("\nClassification report:")
-    print(classification_report(
-        labels,
-        predictions,
-        target_names=CLASS_NAMES,
-        digits=4
-    ))
-
     plot_confusion_matrix(
         labels=labels,
         predictions=predictions,
@@ -188,6 +180,11 @@ def train():
         model_type=MODEL_TYPE,
     )
 
+    print_classification_report(
+        labels=labels,
+        predictions=predictions,
+        class_names=CLASS_NAMES,
+    )
 
 if __name__ == "__main__":
     train()
