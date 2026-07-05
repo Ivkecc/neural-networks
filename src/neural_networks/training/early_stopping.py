@@ -15,5 +15,3 @@ class EarlyStopping:
         self.counter += 1
 
         return self.counter >= self.patience
-
-        

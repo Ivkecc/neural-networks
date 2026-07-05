@@ -186,5 +186,6 @@ def train():
         class_names=CLASS_NAMES,
     )
 
+
 if __name__ == "__main__":
     train()
