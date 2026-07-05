@@ -126,7 +126,7 @@ Instalacija biblioteka
 uv sync
 ```
 
-or
+ili
 
 ```bash
 pip install -r requirements.txt
